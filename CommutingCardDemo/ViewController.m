@@ -275,7 +275,7 @@ static const NSString *RoutePlanningViewControllerDestinationTitle = @"终点";
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-- (void)addBottomView{
+- (void)updateBottomViewInfo{
     [self.view addSubview:self.bottomView];
     [self updateBottomInfo];
 }
@@ -491,7 +491,7 @@ static const NSString *RoutePlanningViewControllerDestinationTitle = @"终点";
         }
         else
         {
-            polylineRenderer.strokeColor = [[UIColor greenColor] colorWithAlphaComponent:0.8];//self.naviRoute.routeColor;
+            polylineRenderer.strokeColor = self.naviRoute.routeColor;
         }
         return polylineRenderer;
     }
@@ -639,7 +639,7 @@ static const NSString *RoutePlanningViewControllerDestinationTitle = @"终点";
         }else if (_type == CommutingCardTypeDrive){
             _seconds =  (self.route.paths[self.selectedIndex]).duration;
         }
-        [self addBottomView];
+        [self updateBottomViewInfo];
     }
 }
 

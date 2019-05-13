@@ -260,7 +260,7 @@ class ViewController: UIViewController, MAMapViewDelegate, AMapSearchDelegate, S
         mapView.addAnnotations(selectPolyLineAno)
     }
     
-    func addBottomView() -> Void {
+    func updateBottomViewInfo() -> Void {
         self.view.addSubview(kbottomView())
         updateBottomInfo()
     }
@@ -554,7 +554,7 @@ class ViewController: UIViewController, MAMapViewDelegate, AMapSearchDelegate, S
             }else if (type == CommutingCardType.drive){
                 seconds = (route?.paths != nil) ? route!.paths[selectedIndex].duration : 0;
             }
-            addBottomView()
+            updateBottomViewInfo()
         }
     }
     

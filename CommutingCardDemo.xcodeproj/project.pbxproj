@@ -39,6 +39,10 @@
 		26355D492289289D00B174D1 /* default_common_route_endpoint_normal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 26355D422289289D00B174D1 /* default_common_route_endpoint_normal@2x.png */; };
 		26355D4A2289289D00B174D1 /* default_common_route_startpoint_normal@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 26355D432289289D00B174D1 /* default_common_route_startpoint_normal@3x.png */; };
 		26355D4B2289289D00B174D1 /* default_common_route_startpoint_normal@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 26355D432289289D00B174D1 /* default_common_route_startpoint_normal@3x.png */; };
+		26355D822289992100B174D1 /* busstate@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 26355D802289992100B174D1 /* busstate@2x.png */; };
+		26355D832289992100B174D1 /* busstate@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 26355D802289992100B174D1 /* busstate@2x.png */; };
+		26355D842289992100B174D1 /* transforstop@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 26355D812289992100B174D1 /* transforstop@2x.png */; };
+		26355D852289992100B174D1 /* transforstop@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 26355D812289992100B174D1 /* transforstop@2x.png */; };
 		266392DA2285296600D1AE21 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 266392D92285296600D1AE21 /* AppDelegate.m */; };
 		266392DD2285296600D1AE21 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 266392DC2285296600D1AE21 /* ViewController.m */; };
 		266392E02285296600D1AE21 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 266392DE2285296600D1AE21 /* Main.storyboard */; };
@@ -124,10 +128,6 @@
 		266399DD22856ED100D1AE21 /* circle.png in Resources */ = {isa = PBXBuildFile; fileRef = 2663982922856ED000D1AE21 /* circle.png */; };
 		266399DE22856ED100D1AE21 /* GWF.png in Resources */ = {isa = PBXBuildFile; fileRef = 2663982A22856ED000D1AE21 /* GWF.png */; };
 		266399DF22856ED100D1AE21 /* GWF.png in Resources */ = {isa = PBXBuildFile; fileRef = 2663982A22856ED000D1AE21 /* GWF.png */; };
-		266399E022856ED100D1AE21 /* busstate@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2663982B22856ED000D1AE21 /* busstate@2x.png */; };
-		266399E122856ED100D1AE21 /* busstate@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2663982B22856ED000D1AE21 /* busstate@2x.png */; };
-		266399E222856ED100D1AE21 /* busstate.png in Resources */ = {isa = PBXBuildFile; fileRef = 2663982C22856ED000D1AE21 /* busstate.png */; };
-		266399E322856ED100D1AE21 /* busstate.png in Resources */ = {isa = PBXBuildFile; fileRef = 2663982C22856ED000D1AE21 /* busstate.png */; };
 		266399E622856ED100D1AE21 /* navi@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2663982E22856ED000D1AE21 /* navi@2x.png */; };
 		266399E722856ED100D1AE21 /* navi@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2663982E22856ED000D1AE21 /* navi@2x.png */; };
 		266399E822856ED100D1AE21 /* naviBackgroundHighlighted.png in Resources */ = {isa = PBXBuildFile; fileRef = 2663982F22856ED000D1AE21 /* naviBackgroundHighlighted.png */; };
@@ -820,8 +820,6 @@
 		26639C9722856ED200D1AE21 /* Violation.png in Resources */ = {isa = PBXBuildFile; fileRef = 2663998A22856ED100D1AE21 /* Violation.png */; };
 		26639C9822856ED200D1AE21 /* userPosition@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2663998B22856ED100D1AE21 /* userPosition@2x.png */; };
 		26639C9922856ED200D1AE21 /* userPosition@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2663998B22856ED100D1AE21 /* userPosition@2x.png */; };
-		26639C9A22856ED200D1AE21 /* transforstop.png in Resources */ = {isa = PBXBuildFile; fileRef = 2663998C22856ED100D1AE21 /* transforstop.png */; };
-		26639C9B22856ED200D1AE21 /* transforstop.png in Resources */ = {isa = PBXBuildFile; fileRef = 2663998C22856ED100D1AE21 /* transforstop.png */; };
 		26639C9C22856ED200D1AE21 /* endPoint.png in Resources */ = {isa = PBXBuildFile; fileRef = 2663998D22856ED100D1AE21 /* endPoint.png */; };
 		26639C9D22856ED200D1AE21 /* endPoint.png in Resources */ = {isa = PBXBuildFile; fileRef = 2663998D22856ED100D1AE21 /* endPoint.png */; };
 		26639C9E22856ED200D1AE21 /* delete@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2663998E22856ED100D1AE21 /* delete@2x.png */; };
@@ -832,8 +830,6 @@
 		26639CA522856ED200D1AE21 /* bus@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2663999122856ED100D1AE21 /* bus@2x.png */; };
 		26639CA622856ED200D1AE21 /* weather_wumai@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2663999222856ED100D1AE21 /* weather_wumai@2x.png */; };
 		26639CA722856ED200D1AE21 /* weather_wumai@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2663999222856ED100D1AE21 /* weather_wumai@2x.png */; };
-		26639CA822856ED200D1AE21 /* transforstop@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2663999322856ED100D1AE21 /* transforstop@2x.png */; };
-		26639CA922856ED200D1AE21 /* transforstop@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2663999322856ED100D1AE21 /* transforstop@2x.png */; };
 		26639CAA22856ED200D1AE21 /* startPoint.png in Resources */ = {isa = PBXBuildFile; fileRef = 2663999422856ED100D1AE21 /* startPoint.png */; };
 		26639CAB22856ED200D1AE21 /* startPoint.png in Resources */ = {isa = PBXBuildFile; fileRef = 2663999422856ED100D1AE21 /* startPoint.png */; };
 		26639CAC22856ED200D1AE21 /* compass@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2663999522856ED100D1AE21 /* compass@2x.png */; };
@@ -900,6 +896,8 @@
 		26355D412289289D00B174D1 /* default_common_route_endpoint_normal@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default_common_route_endpoint_normal@3x.png"; sourceTree = "<group>"; };
 		26355D422289289D00B174D1 /* default_common_route_endpoint_normal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default_common_route_endpoint_normal@2x.png"; sourceTree = "<group>"; };
 		26355D432289289D00B174D1 /* default_common_route_startpoint_normal@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default_common_route_startpoint_normal@3x.png"; sourceTree = "<group>"; };
+		26355D802289992100B174D1 /* busstate@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "busstate@2x.png"; sourceTree = "<group>"; };
+		26355D812289992100B174D1 /* transforstop@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "transforstop@2x.png"; sourceTree = "<group>"; };
 		266392D52285296600D1AE21 /* CommutingCardDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CommutingCardDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		266392D82285296600D1AE21 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		266392D92285296600D1AE21 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -964,8 +962,6 @@
 		2663982822856ED000D1AE21 /* download@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "download@2x.png"; sourceTree = "<group>"; };
 		2663982922856ED000D1AE21 /* circle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = circle.png; sourceTree = "<group>"; };
 		2663982A22856ED000D1AE21 /* GWF.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GWF.png; sourceTree = "<group>"; };
-		2663982B22856ED000D1AE21 /* busstate@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "busstate@2x.png"; sourceTree = "<group>"; };
-		2663982C22856ED000D1AE21 /* busstate.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = busstate.png; sourceTree = "<group>"; };
 		2663982E22856ED000D1AE21 /* navi@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "navi@2x.png"; sourceTree = "<group>"; };
 		2663982F22856ED000D1AE21 /* naviBackgroundHighlighted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = naviBackgroundHighlighted.png; sourceTree = "<group>"; };
 		2663983022856ED000D1AE21 /* truck@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "truck@2x.png"; sourceTree = "<group>"; };
@@ -1312,13 +1308,11 @@
 		2663998922856ED100D1AE21 /* userPosition.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = userPosition.png; sourceTree = "<group>"; };
 		2663998A22856ED100D1AE21 /* Violation.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Violation.png; sourceTree = "<group>"; };
 		2663998B22856ED100D1AE21 /* userPosition@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "userPosition@2x.png"; sourceTree = "<group>"; };
-		2663998C22856ED100D1AE21 /* transforstop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = transforstop.png; sourceTree = "<group>"; };
 		2663998D22856ED100D1AE21 /* endPoint.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = endPoint.png; sourceTree = "<group>"; };
 		2663998E22856ED100D1AE21 /* delete@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "delete@2x.png"; sourceTree = "<group>"; };
 		2663998F22856ED100D1AE21 /* man@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "man@2x.png"; sourceTree = "<group>"; };
 		2663999122856ED100D1AE21 /* bus@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bus@2x.png"; sourceTree = "<group>"; };
 		2663999222856ED100D1AE21 /* weather_wumai@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "weather_wumai@2x.png"; sourceTree = "<group>"; };
-		2663999322856ED100D1AE21 /* transforstop@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "transforstop@2x.png"; sourceTree = "<group>"; };
 		2663999422856ED100D1AE21 /* startPoint.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = startPoint.png; sourceTree = "<group>"; };
 		2663999522856ED100D1AE21 /* compass@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "compass@2x.png"; sourceTree = "<group>"; };
 		2663999622856ED100D1AE21 /* increase@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "increase@2x.png"; sourceTree = "<group>"; };
@@ -1450,6 +1444,8 @@
 				266399A222856ED100D1AE21 /* icon-72.png */,
 				266399A322856ED100D1AE21 /* icon-72@2x.png */,
 				26C2C67B2287CCA300A2B2C7 /* back.png */,
+				26355D802289992100B174D1 /* busstate@2x.png */,
+				26355D812289992100B174D1 /* transforstop@2x.png */,
 				26355D422289289D00B174D1 /* default_common_route_endpoint_normal@2x.png */,
 				26355D412289289D00B174D1 /* default_common_route_endpoint_normal@3x.png */,
 				26355D402289289D00B174D1 /* default_common_route_startpoint_normal@2x.png */,
@@ -1498,8 +1494,6 @@
 				2663982822856ED000D1AE21 /* download@2x.png */,
 				2663982922856ED000D1AE21 /* circle.png */,
 				2663982A22856ED000D1AE21 /* GWF.png */,
-				2663982B22856ED000D1AE21 /* busstate@2x.png */,
-				2663982C22856ED000D1AE21 /* busstate.png */,
 				2663982E22856ED000D1AE21 /* navi@2x.png */,
 				2663982F22856ED000D1AE21 /* naviBackgroundHighlighted.png */,
 				2663983022856ED000D1AE21 /* truck@2x.png */,
@@ -1511,13 +1505,11 @@
 				2663998922856ED100D1AE21 /* userPosition.png */,
 				2663998A22856ED100D1AE21 /* Violation.png */,
 				2663998B22856ED100D1AE21 /* userPosition@2x.png */,
-				2663998C22856ED100D1AE21 /* transforstop.png */,
 				2663998D22856ED100D1AE21 /* endPoint.png */,
 				2663998E22856ED100D1AE21 /* delete@2x.png */,
 				2663998F22856ED100D1AE21 /* man@2x.png */,
 				2663999122856ED100D1AE21 /* bus@2x.png */,
 				2663999222856ED100D1AE21 /* weather_wumai@2x.png */,
-				2663999322856ED100D1AE21 /* transforstop@2x.png */,
 				2663999422856ED100D1AE21 /* startPoint.png */,
 				2663999522856ED100D1AE21 /* compass@2x.png */,
 				2663999622856ED100D1AE21 /* increase@2x.png */,
@@ -2089,7 +2081,6 @@
 				26639CAA22856ED200D1AE21 /* startPoint.png in Resources */,
 				26639CAE22856ED200D1AE21 /* increase@2x.png in Resources */,
 				26639A7622856ED100D1AE21 /* 12_3369_1551.png in Resources */,
-				266399E222856ED100D1AE21 /* busstate.png in Resources */,
 				26639A7422856ED100D1AE21 /* 12_3369_1550.png in Resources */,
 				266399EE22856ED100D1AE21 /* gpsStat2@2x.png in Resources */,
 				26639B0822856ED200D1AE21 /* 13_6737_3098.png in Resources */,
@@ -2216,7 +2207,6 @@
 				26C2C6852287CFEC00A2B2C7 /* addressedit@2x.png in Resources */,
 				26639CCA22856ED200D1AE21 /* icon@2x.png in Resources */,
 				266399AE22856ED100D1AE21 /* arrow_right.png in Resources */,
-				26639C9A22856ED200D1AE21 /* transforstop.png in Resources */,
 				26639BB422856ED200D1AE21 /* 13_6750_3095.png in Resources */,
 				26639B0022856ED200D1AE21 /* 13_6741_3099.png in Resources */,
 				26639A9822856ED100D1AE21 /* 13_6739_3095.png in Resources */,
@@ -2237,7 +2227,6 @@
 				26639A3022856ED100D1AE21 /* 12_3368_1549.png in Resources */,
 				26639CAC22856ED200D1AE21 /* compass@2x.png in Resources */,
 				26639BD822856ED200D1AE21 /* 13_6748_3099.png in Resources */,
-				26639CA822856ED200D1AE21 /* transforstop@2x.png in Resources */,
 				26639ABE22856ED100D1AE21 /* 13_6744_3094.png in Resources */,
 				26639AB822856ED100D1AE21 /* 13_6738_3096.png in Resources */,
 				26639AE222856ED100D1AE21 /* 13_6740_3105.png in Resources */,
@@ -2396,11 +2385,11 @@
 				26639BFE22856ED200D1AE21 /* 13_6746_3097.png in Resources */,
 				26639A0C22856ED100D1AE21 /* 11_1684_774.png in Resources */,
 				26639B1A22856ED200D1AE21 /* 13_6750_3102.png in Resources */,
-				266399E022856ED100D1AE21 /* busstate@2x.png in Resources */,
 				266399CE22856ED100D1AE21 /* animatedCar_1.png in Resources */,
 				26639A8C22856ED100D1AE21 /* 12_3375_1552.png in Resources */,
 				26639C2622856ED200D1AE21 /* 13_6741_3095.png in Resources */,
 				26639BA422856ED200D1AE21 /* 13_6749_3104.png in Resources */,
+				26355D842289992100B174D1 /* transforstop@2x.png in Resources */,
 				26639BD022856ED200D1AE21 /* 13_6751_3096.png in Resources */,
 				26639BBC22856ED200D1AE21 /* 13_6749_3098.png in Resources */,
 				26639BB622856ED200D1AE21 /* 13_6742_3106.png in Resources */,
@@ -2455,6 +2444,7 @@
 				26639BC022856ED200D1AE21 /* 13_6743_3104.png in Resources */,
 				266399C822856ED100D1AE21 /* animatedTrain_1.png in Resources */,
 				26639C8A22856ED200D1AE21 /* 13_6744_3105.png in Resources */,
+				26355D822289992100B174D1 /* busstate@2x.png in Resources */,
 				26639A1E22856ED100D1AE21 /* 12_3370_1553.png in Resources */,
 				26639B6C22856ED200D1AE21 /* 13_6749_3097.png in Resources */,
 				26639BD222856ED200D1AE21 /* 13_6743_3105.png in Resources */,
@@ -2519,7 +2509,6 @@
 				26639CAB22856ED200D1AE21 /* startPoint.png in Resources */,
 				26639CAF22856ED200D1AE21 /* increase@2x.png in Resources */,
 				26639A7722856ED100D1AE21 /* 12_3369_1551.png in Resources */,
-				266399E322856ED100D1AE21 /* busstate.png in Resources */,
 				26639A7522856ED100D1AE21 /* 12_3369_1550.png in Resources */,
 				266399EF22856ED100D1AE21 /* gpsStat2@2x.png in Resources */,
 				26639B0922856ED200D1AE21 /* 13_6737_3098.png in Resources */,
@@ -2646,7 +2635,6 @@
 				26C2C6862287CFEC00A2B2C7 /* addressedit@2x.png in Resources */,
 				26639CCB22856ED200D1AE21 /* icon@2x.png in Resources */,
 				266399AF22856ED100D1AE21 /* arrow_right.png in Resources */,
-				26639C9B22856ED200D1AE21 /* transforstop.png in Resources */,
 				26639BB522856ED200D1AE21 /* 13_6750_3095.png in Resources */,
 				26639B0122856ED200D1AE21 /* 13_6741_3099.png in Resources */,
 				26639A9922856ED100D1AE21 /* 13_6739_3095.png in Resources */,
@@ -2667,7 +2655,6 @@
 				26639A3122856ED100D1AE21 /* 12_3368_1549.png in Resources */,
 				26639CAD22856ED200D1AE21 /* compass@2x.png in Resources */,
 				26639BD922856ED200D1AE21 /* 13_6748_3099.png in Resources */,
-				26639CA922856ED200D1AE21 /* transforstop@2x.png in Resources */,
 				26639ABF22856ED100D1AE21 /* 13_6744_3094.png in Resources */,
 				26639AB922856ED100D1AE21 /* 13_6738_3096.png in Resources */,
 				26639AE322856ED100D1AE21 /* 13_6740_3105.png in Resources */,
@@ -2826,11 +2813,11 @@
 				26639BFF22856ED200D1AE21 /* 13_6746_3097.png in Resources */,
 				26639A0D22856ED100D1AE21 /* 11_1684_774.png in Resources */,
 				26639B1B22856ED200D1AE21 /* 13_6750_3102.png in Resources */,
-				266399E122856ED100D1AE21 /* busstate@2x.png in Resources */,
 				266399CF22856ED100D1AE21 /* animatedCar_1.png in Resources */,
 				26639A8D22856ED100D1AE21 /* 12_3375_1552.png in Resources */,
 				26639C2722856ED200D1AE21 /* 13_6741_3095.png in Resources */,
 				26639BA522856ED200D1AE21 /* 13_6749_3104.png in Resources */,
+				26355D852289992100B174D1 /* transforstop@2x.png in Resources */,
 				26639BD122856ED200D1AE21 /* 13_6751_3096.png in Resources */,
 				26639BBD22856ED200D1AE21 /* 13_6749_3098.png in Resources */,
 				26639BB722856ED200D1AE21 /* 13_6742_3106.png in Resources */,
@@ -2885,6 +2872,7 @@
 				26639BC122856ED200D1AE21 /* 13_6743_3104.png in Resources */,
 				266399C922856ED100D1AE21 /* animatedTrain_1.png in Resources */,
 				26639C8B22856ED200D1AE21 /* 13_6744_3105.png in Resources */,
+				26355D832289992100B174D1 /* busstate@2x.png in Resources */,
 				26639A1F22856ED100D1AE21 /* 12_3370_1553.png in Resources */,
 				26639B6D22856ED200D1AE21 /* 13_6749_3097.png in Resources */,
 				26639BD322856ED200D1AE21 /* 13_6743_3105.png in Resources */,
