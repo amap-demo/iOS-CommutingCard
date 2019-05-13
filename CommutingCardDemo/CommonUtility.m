@@ -242,10 +242,13 @@
 }
     
 + (CLLocationCoordinate2D)fetchPointPolylinePoints:(NSArray<MAPolyline *> *)polys mapView:(MAMapView*)mapView index:(NSInteger)index selected:(NSInteger)slect
-{//index = 0找第0条poly上可以区分的点 select = 1
+{
     MAPolyline *poly = [polys objectAtIndex:index];
     MAMapPoint *polylinePoints = poly.points;
     NSInteger currentcount = poly.pointCount;
+    NSInteger kCount = 0;
+    static NSInteger totalColt = 4;
+    CLLocationCoordinate2D kcoord = kCLLocationCoordinate2DInvalid;
     for (NSInteger i = currentcount-1; i >= 0; i -=5) {
         MAMapPoint point = polylinePoints[i];
         CLLocationCoordinate2D coord = MACoordinateForMapPoint(point);
@@ -255,14 +258,14 @@
             MAPolyline *kpoly = [polys objectAtIndex:slect];
             MAMapPoint *kpolylinePts = kpoly.points;
             NSInteger kcount = kpoly.pointCount;
-            isInside = [self polylineHitTestWithCoordinate:coord mapView:mapView polylinePoints:kpolylinePts pointCount:kcount lineWidth:100];
+            isInside = [self polylineHitTestWithCoordinate:coord mapView:mapView polylinePoints:kpolylinePts pointCount:kcount lineWidth:60];
         }else{
             for (NSInteger j = 0; j < polys.count; j ++) {
                 if (j != index) {
                     MAPolyline *kpoly = [polys objectAtIndex:j];
                     MAMapPoint *kpolylinePts = kpoly.points;
                     NSInteger kcount = kpoly.pointCount;
-                    isInside = [self polylineHitTestWithCoordinate:coord mapView:mapView polylinePoints:kpolylinePts pointCount:kcount lineWidth:100];
+                    isInside = [self polylineHitTestWithCoordinate:coord mapView:mapView polylinePoints:kpolylinePts pointCount:kcount lineWidth:60];
                     if (isInside) {
                         break;
                     }
@@ -271,10 +274,14 @@
         }
         
         if (!isInside) {
-            return coord;
+            kcoord = coord;
+            kCount ++;
+            if (kCount >= totalColt) {
+                break;
+            }
         }
     }
-    return kCLLocationCoordinate2DInvalid;
+    return kcoord;
 }
     
 //点击地图时，判断是否点击在polyline线上

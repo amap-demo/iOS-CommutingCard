@@ -33,6 +33,8 @@
 /// 多彩线路线coordinates
 @property (nonatomic, strong) NSArray *coordinates;
 
+@property (nonatomic, assign) BOOL selected;
+
 
 - (void)addToMapView:(MAMapView *)mapView;
 

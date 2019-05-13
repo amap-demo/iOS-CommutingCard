@@ -507,6 +507,7 @@
     
     NSMutableArray *mutablePolylineColors = [NSMutableArray array];
     NSMutableArray *mutablePolylineTextures = [NSMutableArray array];
+    NSMutableArray *mutablePolylineTexturesSelect = [NSMutableArray array];
 
     NSMutableArray *coordinates = [NSMutableArray array];
     NSMutableArray *indexes = [NSMutableArray array];
@@ -550,7 +551,9 @@
     NSInteger statusesIndex = 0;
     NSInteger curTrafficLength = tmcs.firstObject.distance;
     [mutablePolylineColors addObject:[self colorWithTrafficStatus:tmcs.firstObject.status]];
-    [mutablePolylineTextures addObject:[self imageWithTrafficStatus:tmcs.firstObject.status]];
+    [mutablePolylineTextures addObject:[self imageWithTrafficStatus:tmcs.firstObject.status isSelected:NO]];
+    [mutablePolylineTexturesSelect addObject:[self imageWithTrafficStatus:tmcs.firstObject.status isSelected:YES]];
+
     [indexes addObject:@(0)];
     [coordinates addObject:[coorArray objectAtIndex:0]];
     for ( ;i < coorArray.count; ++i)
@@ -589,7 +592,8 @@
             }
             curTrafficLength = tmcs[statusesIndex].distance;
             [mutablePolylineColors addObject:[self colorWithTrafficStatus:tmcs[statusesIndex].status]];
-            [mutablePolylineTextures addObject:[self imageWithTrafficStatus:tmcs[statusesIndex].status]];
+            [mutablePolylineTextures addObject:[self imageWithTrafficStatus:tmcs[statusesIndex].status isSelected:NO]];
+            [mutablePolylineTexturesSelect addObject:[self imageWithTrafficStatus:tmcs[statusesIndex].status isSelected:YES]];
         }
         else
         {
@@ -628,6 +632,7 @@
     CustomMAMultiPolyline *polyline = [CustomMAMultiPolyline polylineWithCoordinates:runningCoords count:count drawStyleIndexes:array2];
     polyline.mutablePolylineColors = [mutablePolylineColors copy];
     polyline.mutablePolylineTextures = [mutablePolylineTextures copy];
+    polyline.mutablePolylineTexturesSelect = [mutablePolylineTexturesSelect copy];
 
     free(runningCoords);
     
@@ -660,7 +665,7 @@
     return colorMapping[status] ?: [UIColor greenColor];
 }
 
-+ (UIImage *)imageWithTrafficStatus:(NSString *)status
++ (UIImage *)imageWithTrafficStatus:(NSString *)status isSelected:(BOOL)isSelected
     {
         if (status == nil)
         {
@@ -670,13 +675,17 @@
         static NSDictionary *imageMapping = nil;
         if (imageMapping == nil)
         {
-            imageMapping = @{@"未知":[UIImage imageNamed:@"custtexture_green"],
-                             @"畅通":[UIImage imageNamed:@"custtexture_green"],
-                             @"缓行":[UIImage imageNamed:@"custtexture_slow"],
-                             @"拥堵":[UIImage imageNamed:@"custtexture_bad"]};
+            imageMapping = @{@"未知":@"custtexture_green",
+                             @"畅通":@"custtexture_green",
+                             @"缓行":@"custtexture_slow",
+                             @"拥堵":@"custtexture_bad"};
         }
+        NSString *imageName = imageMapping[status] ?: @"custtexture_green";
         
-        return imageMapping[status] ?: [UIImage imageNamed:@"custtexture_green"];
+        if (!isSelected) {
+            imageName = [NSString stringWithFormat:@"%@_unselected",imageName];
+        }
+        return [UIImage imageNamed:imageName];
 }
 
 + (NSString *)calcPointWithStartPoint:(NSString *)start endPoint:(NSString *)end rate:(double)rate

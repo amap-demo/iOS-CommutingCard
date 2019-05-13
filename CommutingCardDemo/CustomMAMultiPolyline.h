@@ -14,6 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
     
 @property(nonatomic , copy)NSArray *mutablePolylineColors;
 @property(nonatomic , copy)NSArray *mutablePolylineTextures;
+@property(nonatomic , copy)NSArray *mutablePolylineTexturesSelect;
 
 @end
 

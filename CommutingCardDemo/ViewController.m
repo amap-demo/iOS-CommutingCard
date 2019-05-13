@@ -20,6 +20,8 @@
 #define kFirstBusStart @"kFirstBusStart"
 #define kElseBusStart @"kElseBusStart"
 #define kSelectPolyLine @"选择路线"
+#define kAMapNaviRoutePlanPointAnnotationViewStartImageName  @"default_common_route_startpoint_normal"
+#define kAMapNaviRoutePlanPointAnnotationViewEndImageName    @"default_common_route_endpoint_normal"
 
 static const NSInteger RoutePlanningPaddingEdge                    = 20;
 static const NSString *RoutePlanningViewControllerStartTitle       = @"起点";
@@ -54,6 +56,10 @@ static const NSString *RoutePlanningViewControllerDestinationTitle = @"终点";
 @property (nonatomic, strong) NSMutableArray *optionalPolyLines;
 @property (nonatomic, assign) NSInteger selectedIndex;
 
+/* 起始点poi. */
+@property (nonatomic,copy) NSString* startPOI;
+/* 终点poi. */
+@property (nonatomic,copy) NSString* destinationPOI;
 @end
 
 @implementation ViewController
@@ -66,6 +72,9 @@ static const NSString *RoutePlanningViewControllerDestinationTitle = @"终点";
                                                                             action:@selector(returnAction)];
     self.startCoordinate        = CLLocationCoordinate2DMake(39.903351, 116.473098);
     self.destinationCoordinate  = CLLocationCoordinate2DMake(40.018217, 116.418767);
+    self.startPOI = @"国家广告产业园";
+    self.destinationPOI = @"奥北家园";
+
     self.optionalPolyLines = [NSMutableArray new];
     _busNams = [NSMutableArray new];
     _busViaStopsAno = [NSMutableArray new];
@@ -77,7 +86,7 @@ static const NSString *RoutePlanningViewControllerDestinationTitle = @"终点";
     self.mapView.delegate = self;
     
     [self.view addSubview:self.mapView];
-    self.mapView.showTraffic = NO;
+    self.mapView.showTraffic = YES;
     
     // 开启定位
     self.mapView.showsUserLocation = YES;
@@ -163,28 +172,28 @@ static const NSString *RoutePlanningViewControllerDestinationTitle = @"终点";
     base.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:base];
     _starLab = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 190, 30)];
-    _starLab.text = [NSString stringWithFormat:@"起点:%f,%f",self.startCoordinate.longitude,self.startCoordinate.latitude];
+    _starLab.text = [NSString stringWithFormat:@"起点:%@",self.startPOI];
     _starLab.textColor = [UIColor blackColor];
     _starLab.font = [UIFont systemFontOfSize:14];
     [base addSubview:_starLab];
-    UIButton *startBtn = [[UIButton alloc]initWithFrame:CGRectMake(_starLab.bounds.origin.x + _starLab.bounds.size.width, 0, 60, 25)];
+    UIButton *startBtn = [[UIButton alloc]initWithFrame:CGRectMake(_starLab.bounds.origin.x + _starLab.bounds.size.width, 0, 70, 25)];
     startBtn.backgroundColor = [UIColor redColor];
     [startBtn setTitle:@"重选起点" forState:UIControlStateNormal];
     [startBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    startBtn.titleLabel.font = [UIFont systemFontOfSize:12];
+    startBtn.titleLabel.font = [UIFont systemFontOfSize:13];
     [startBtn addTarget:self action:@selector(startBtn:) forControlEvents:UIControlEventTouchUpInside];
     [base addSubview:startBtn];
 
     _endLab = [[UILabel alloc]initWithFrame:CGRectMake(0, 30, 190, 30)];
-    _endLab.text = [NSString stringWithFormat:@"终点:%f,%f",self.destinationCoordinate.longitude,self.destinationCoordinate.latitude];
+    _endLab.text = [NSString stringWithFormat:@"终点:%@",self.destinationPOI];
     _endLab.textColor = [UIColor blackColor];
     _endLab.font = [UIFont systemFontOfSize:14];
     [base addSubview:_endLab];
-    UIButton *endBtn = [[UIButton alloc]initWithFrame:CGRectMake(_endLab.bounds.origin.x + _endLab.bounds.size.width, 30, 60, 25)];
+    UIButton *endBtn = [[UIButton alloc]initWithFrame:CGRectMake(_endLab.bounds.origin.x + _endLab.bounds.size.width, 30, 70, 25)];
     endBtn.backgroundColor = [UIColor redColor];
     [endBtn setTitle:@"重选终点" forState:UIControlStateNormal];
     [endBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    endBtn.titleLabel.font = [UIFont systemFontOfSize:12];
+    endBtn.titleLabel.font = [UIFont systemFontOfSize:13];
     [endBtn addTarget:self action:@selector(endBtn:) forControlEvents:UIControlEventTouchUpInside];
     [base addSubview:endBtn];
 }
@@ -232,6 +241,9 @@ static const NSString *RoutePlanningViewControllerDestinationTitle = @"终点";
         [self.driveNaviRoutes removeAllObjects];
         for (AMapPath *path in self.route.paths) {
             MANaviRoute*navi = [MANaviRoute naviRouteForPath:path withNaviType:type showTraffic:YES startPoint:[AMapGeoPoint locationWithLatitude:self.startCoordinate.latitude longitude:self.startCoordinate.longitude] endPoint:[AMapGeoPoint locationWithLatitude:self.destinationCoordinate.latitude longitude:self.destinationCoordinate.longitude]];
+            if (self.driveNaviRoutes.count == self.selectedIndex) {
+                navi.selected = YES;
+            }
             for (id<MAOverlay> poly in navi.routePolylines) {
                 if ([poly isKindOfClass:[CustomMAMultiPolyline class]]) {
                     [self.optionalPolyLines addObject:poly];
@@ -239,9 +251,15 @@ static const NSString *RoutePlanningViewControllerDestinationTitle = @"终点";
             }
             [self.driveNaviRoutes addObject:navi];
         }
+        MANaviRoute* selectnavi = nil;////把已经选中的路线，全部移除，再添加到最后，就会显示在最上面，
         for (MANaviRoute* navi in self.driveNaviRoutes) {
-            [navi addToMapView:self.mapView];
+            if (!navi.selected) {
+                [navi addToMapView:self.mapView];
+            }else{
+                selectnavi = navi;
+            }
         }
+        [selectnavi addToMapView:self.mapView];
         
         /* 缩放地图使其适应polylines的展示. */
         [self.mapView setVisibleMapRect:[CommonUtility mapRectForOverlays:self.driveNaviRoutes[self.selectedIndex].routePolylines]
@@ -479,17 +497,16 @@ static const NSString *RoutePlanningViewControllerDestinationTitle = @"终点";
     }
     if ([overlay isKindOfClass:[CustomMAMultiPolyline class]])
     {
-        //            MAMultiColoredPolylineRenderer * polylineRenderer = [[MAMultiColoredPolylineRenderer alloc] initWithMultiPolyline:overlay];
-        //            polylineRenderer.strokeColors =((CustomMAMultiPolyline*)overlay).mutablePolylineColors;
         MAMultiTexturePolylineRenderer * polylineRenderer = [[MAMultiTexturePolylineRenderer alloc] initWithMultiPolyline:overlay];
-        
+        polylineRenderer.lineJoinType = kMALineJoinRound;
+
         if (overlay == self.optionalPolyLines[self.selectedIndex]) {
-            polylineRenderer.lineWidth = 24;
+            polylineRenderer.lineWidth = 30;
+            polylineRenderer.strokeTextureImages =((CustomMAMultiPolyline*)overlay).mutablePolylineTexturesSelect;
         }else{
-            polylineRenderer.lineWidth = 10;
-            polylineRenderer.alpha = 0.9;
+            polylineRenderer.lineWidth = 30*0.8;
+            polylineRenderer.strokeTextureImages =((CustomMAMultiPolyline*)overlay).mutablePolylineTextures;
         }
-        polylineRenderer.strokeTextureImages =((CustomMAMultiPolyline*)overlay).mutablePolylineTextures;
         return polylineRenderer;
     }
     return nil;
@@ -564,12 +581,12 @@ static const NSString *RoutePlanningViewControllerDestinationTitle = @"终点";
         /* 起点. */
         if ([[annotation title] isEqualToString:(NSString*)RoutePlanningViewControllerStartTitle])
         {
-            poiAnnotationView.image = [UIImage imageNamed:@"startPoint"];
+            poiAnnotationView.image = [UIImage imageNamed:kAMapNaviRoutePlanPointAnnotationViewStartImageName];
         }
         /* 终点. */
         else if([[annotation title] isEqualToString:(NSString*)RoutePlanningViewControllerDestinationTitle])
         {
-            poiAnnotationView.image = [UIImage imageNamed:@"endPoint"];
+            poiAnnotationView.image = [UIImage imageNamed:kAMapNaviRoutePlanPointAnnotationViewEndImageName];
         }
         
         return poiAnnotationView;
@@ -629,10 +646,12 @@ static const NSString *RoutePlanningViewControllerDestinationTitle = @"终点";
 - (void)updateLocation:(AMapTip *)tip type:(NSInteger)ktype{
     if (ktype == 0) {
         self.startCoordinate        = CLLocationCoordinate2DMake(tip.location.latitude, tip.location.longitude);
-        _starLab.text = [NSString stringWithFormat:@"起点:%f,%f",self.startCoordinate.longitude,self.startCoordinate.latitude];
+        self.startPOI = tip.name;
+        _starLab.text = [NSString stringWithFormat:@"起点:%@",self.startPOI];
     }else{
         self.destinationCoordinate        = CLLocationCoordinate2DMake(tip.location.latitude, tip.location.longitude);
-        _endLab.text = [NSString stringWithFormat:@"终点:%f,%f",self.destinationCoordinate.longitude,self.destinationCoordinate.latitude];
+        self.destinationPOI = tip.name;
+        _endLab.text = [NSString stringWithFormat:@"终点:%@",self.destinationPOI];
     }
     if (_type == CommutingCardTypeBus) {
         [self searchRoutePlanningBus];
