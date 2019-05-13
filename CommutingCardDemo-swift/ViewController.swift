@@ -7,7 +7,8 @@
 
 import Foundation
 import UIKit
-class ViewController: UIViewController, MAMapViewDelegate, AMapSearchDelegate {
+class ViewController: UIViewController, MAMapViewDelegate, AMapSearchDelegate, SettingViewControllerDelegate {
+    
     let RoutePlanningPaddingEdge: NSInteger = 20
     let RoutePlanningViewControllerStartTitle: String = "起点"
     let RoutePlanningViewControllerDestinationTitle: String = "终点"
@@ -33,7 +34,9 @@ class ViewController: UIViewController, MAMapViewDelegate, AMapSearchDelegate {
     var seconds: NSInteger = 0
     var optionalPolyLines: Array<CustomMAMultiPolyline>?
     var selectedIndex: NSInteger = 0
-    
+    var _starLab:UILabel!
+    var _endLab:UILabel!
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.gray
@@ -47,6 +50,7 @@ class ViewController: UIViewController, MAMapViewDelegate, AMapSearchDelegate {
         initMapView()
         initSearch()
         initControls()
+        initStartAndEnd()
         route = AMapRoute.init()
         if (type == CommutingCardType.bus) {
             searchRoutePlanningBus()
@@ -56,9 +60,14 @@ class ViewController: UIViewController, MAMapViewDelegate, AMapSearchDelegate {
         addDefaultAnnotations()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.setNavigationBarHidden(true, animated: true)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
     override func didReceiveMemoryWarning() {
@@ -80,12 +89,58 @@ class ViewController: UIViewController, MAMapViewDelegate, AMapSearchDelegate {
         search = AMapSearchAPI.init()
         search.delegate = self
     }
+    
+    func initStartAndEnd() -> Void {
+        let base = UIView.init(frame: CGRect.init(x: 75, y: 20, width: self.view.bounds.size.width - 70 - 50, height: 60))
+        base.backgroundColor = UIColor.white
+        self.view.addSubview(base)
+        _starLab = UILabel.init(frame: CGRect.init(x: 0, y: 0, width: 190, height: 30))
+        _starLab.text = "起点:"+String(self.startCoordinate.longitude) + String(self.startCoordinate.latitude)
+        _starLab.textColor = UIColor.black
+        _starLab.font = UIFont.systemFont(ofSize: 14)
+        base.addSubview(_starLab)
+        let startBtn = UIButton.init(frame: CGRect.init(x: _starLab.bounds.origin.x + _starLab.bounds.size.width, y: 0, width: 60, height: 25))
+        startBtn.backgroundColor = UIColor.red
+        startBtn.setTitle("重选起点", for: UIControlState.normal)
+        startBtn.setTitleColor(UIColor.black, for: UIControlState.normal)
+        startBtn.titleLabel?.font = UIFont.systemFont(ofSize: 12)
+        startBtn.addTarget(self, action: #selector(self.startBtn(sender:)), for: UIControlEvents.touchUpInside)
+        base.addSubview(startBtn)
+        
+        _endLab = UILabel.init(frame: CGRect.init(x: 0, y: 30, width: 190, height: 30))
+        _endLab.text = "终点:"+String(self.destinationCoordinate.longitude) + String(self.destinationCoordinate.latitude)
+        _endLab.textColor = UIColor.black
+        _endLab.font = UIFont.systemFont(ofSize: 14)
+        base.addSubview(_endLab)
+        let endBtn = UIButton.init(frame: CGRect.init(x: _endLab.bounds.origin.x + _endLab.bounds.size.width, y: 30, width: 60, height: 25))
+        endBtn.backgroundColor = UIColor.red
+        endBtn.setTitle("重选终点", for: UIControlState.normal)
+        endBtn.setTitleColor(UIColor.black, for: UIControlState.normal)
+        endBtn.titleLabel?.font = UIFont.systemFont(ofSize: 12)
+        endBtn.addTarget(self, action: #selector(self.endBtn(sender:)), for: UIControlEvents.touchUpInside)
+        base.addSubview(endBtn)
+    }
+    
+    @objc func startBtn(sender : UIButton) -> Void {
+        let startVC = SettingViewController.init()
+        startVC.delegate = self
+        startVC.type = 0;
+        self.navigationController?.pushViewController(startVC, animated: true)
+    }
+    
+    @objc func endBtn(sender : UIButton) -> Void {
+        let endVC = SettingViewController.init()
+        endVC.delegate = self;
+        endVC.type = 1
+        self.navigationController?.pushViewController(endVC, animated: true)
+    }
+    
     func initControls() {
         let btn1 = UIButton.init()
         btn1.backgroundColor = UIColor.red
         btn1.layer.cornerRadius = 5
         btn1.layer.masksToBounds = true
-        btn1.frame = CGRect.init(x: self.view.bounds.width - 80, y: self.view.bounds.height - 200, width: 60, height: 40)
+        btn1.frame = CGRect.init(x: 10, y: 20, width: 60, height: 40)
         btn1.setTitle("切为驾车", for: UIControlState.normal)
         btn1.setTitleColor(UIColor.black, for: UIControlState.normal)
         btn1.titleLabel?.font = UIFont.boldSystemFont(ofSize: 13)
@@ -107,7 +162,7 @@ class ViewController: UIViewController, MAMapViewDelegate, AMapSearchDelegate {
         addDefaultAnnotations()
     }
     
-    func searchRoutePlanningBus() -> Void {
+    func addDefaultAnnotations() -> Void {
         let startAnnotation = MAPointAnnotation.init()
         startAnnotation.coordinate = startCoordinate
         startAnnotation.title = RoutePlanningViewControllerStartTitle
@@ -125,7 +180,7 @@ class ViewController: UIViewController, MAMapViewDelegate, AMapSearchDelegate {
         navi.destination = AMapGeoPoint.location(withLatitude: CGFloat(destinationCoordinate!.latitude), longitude: CGFloat(destinationCoordinate!.longitude))
         search.aMapDrivingRouteSearch(navi)
     }
-    func addDefaultAnnotations() -> Void {
+    func searchRoutePlanningBus() -> Void {
         let navi = AMapTransitRouteSearchRequest.init()
         navi.strategy = 5
         navi.requireExtension = true
@@ -149,6 +204,7 @@ class ViewController: UIViewController, MAMapViewDelegate, AMapSearchDelegate {
             if(route == nil || route?.paths == nil){
                 return
             }
+            driveNaviRoutes?.removeAll()
             for path:AMapPath in route?.paths ?? [] {
                 let navi = MANaviRoute.init(for: path, withNaviType: ctype, showTraffic: true, start: AMapGeoPoint.location(withLatitude: CGFloat(startCoordinate!.latitude), longitude: CGFloat(startCoordinate!.longitude)), end: AMapGeoPoint.location(withLatitude: CGFloat(destinationCoordinate!.latitude), longitude: CGFloat(destinationCoordinate!.longitude)))
                 for poly:Any in (navi!.routePolylines! as [AnyObject]){
@@ -500,6 +556,22 @@ class ViewController: UIViewController, MAMapViewDelegate, AMapSearchDelegate {
             }
             addBottomView()
         }
+    }
+    
+    func updateLocation(_ tip: AMapTip, type ktype: Int) {
+        if (ktype == 0) {
+            self.startCoordinate        = CLLocationCoordinate2DMake(CLLocationDegrees(tip.location!.latitude), CLLocationDegrees(tip.location!.longitude));
+            _starLab.text = "起点:"+String(self.startCoordinate.longitude) + String(self.startCoordinate.latitude)
+        }else{
+            self.destinationCoordinate        = CLLocationCoordinate2DMake(CLLocationDegrees(tip.location!.latitude), CLLocationDegrees(tip.location!.longitude));
+            _endLab.text = "终点:"+String(self.destinationCoordinate.longitude) + String(self.destinationCoordinate.latitude)
+        }
+        if (type == CommutingCardType.bus) {
+            searchRoutePlanningBus()
+        }else if (type == CommutingCardType.drive){
+            searchRoutePlanningDrive()
+        }
+        addDefaultAnnotations()
     }
 }
 

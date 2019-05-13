@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import <AMapFoundationKit/AMapFoundationKit.h>
+#import "ViewController.h"
 
 #define kAPIKey @"8aa6b9cbba0d22bf0955609091c751aa"
 
@@ -20,6 +21,10 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [AMapServices sharedServices].apiKey = kAPIKey;
+    ViewController *vc = [ViewController new];
+    UINavigationController *navi = [[UINavigationController alloc]initWithRootViewController:vc];
+    [self.window setRootViewController:navi];
+    [self.window makeKeyAndVisible];
     return YES;
 }
 

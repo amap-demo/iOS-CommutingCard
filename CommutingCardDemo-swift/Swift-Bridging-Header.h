@@ -19,6 +19,7 @@
 #import "CommonUtility.h"
 #import "BusStateAnnotationView.h"
 #import "MAPolyLineSelectAnnotationView.h"
+#import "SettingViewController.h"
 
 
 #endif /* Swift_Bridging_Header_h */

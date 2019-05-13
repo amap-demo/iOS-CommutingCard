@@ -844,6 +844,16 @@
 		26639CCB22856ED200D1AE21 /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 266399A422856ED100D1AE21 /* icon@2x.png */; };
 		26639CCC22856ED200D1AE21 /* marker_blue@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 266399A522856ED100D1AE21 /* marker_blue@2x.png */; };
 		26639CCD22856ED200D1AE21 /* marker_blue@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 266399A522856ED100D1AE21 /* marker_blue@2x.png */; };
+		26C2C67A2287C56600A2B2C7 /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26C2C6792287C56600A2B2C7 /* SettingViewController.m */; };
+		26C2C67D2287CCA400A2B2C7 /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = 26C2C67B2287CCA300A2B2C7 /* back.png */; };
+		26C2C67E2287CCA400A2B2C7 /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = 26C2C67B2287CCA300A2B2C7 /* back.png */; };
+		26C2C67F2287CCA400A2B2C7 /* back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 26C2C67C2287CCA400A2B2C7 /* back@2x.png */; };
+		26C2C6802287CCA400A2B2C7 /* back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 26C2C67C2287CCA400A2B2C7 /* back@2x.png */; };
+		26C2C6832287CFEC00A2B2C7 /* addressedit.png in Resources */ = {isa = PBXBuildFile; fileRef = 26C2C6812287CFEB00A2B2C7 /* addressedit.png */; };
+		26C2C6842287CFEC00A2B2C7 /* addressedit.png in Resources */ = {isa = PBXBuildFile; fileRef = 26C2C6812287CFEB00A2B2C7 /* addressedit.png */; };
+		26C2C6852287CFEC00A2B2C7 /* addressedit@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 26C2C6822287CFEB00A2B2C7 /* addressedit@2x.png */; };
+		26C2C6862287CFEC00A2B2C7 /* addressedit@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 26C2C6822287CFEB00A2B2C7 /* addressedit@2x.png */; };
+		26C2C6872287EAF700A2B2C7 /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26C2C6792287C56600A2B2C7 /* SettingViewController.m */; };
 		6DBD11003AA0AF261DD115FC /* libPods-CommutingCardDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E2500A11FF2C6028056534C8 /* libPods-CommutingCardDemo.a */; };
 		A78FC46E310640B1A0BBADAE /* libPods-CommutingCardDemo-swift.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E9990178ECD374DDBCBAF5F /* libPods-CommutingCardDemo-swift.a */; };
 /* End PBXBuildFile section */
@@ -1291,6 +1301,12 @@
 		266399A422856ED100D1AE21 /* icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon@2x.png"; sourceTree = "<group>"; };
 		266399A522856ED100D1AE21 /* marker_blue@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "marker_blue@2x.png"; sourceTree = "<group>"; };
 		26639CCE22856F8100D1AE21 /* CommonDefine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommonDefine.h; sourceTree = "<group>"; };
+		26C2C6782287C56600A2B2C7 /* SettingViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SettingViewController.h; sourceTree = "<group>"; };
+		26C2C6792287C56600A2B2C7 /* SettingViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SettingViewController.m; sourceTree = "<group>"; };
+		26C2C67B2287CCA300A2B2C7 /* back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back.png; sourceTree = "<group>"; };
+		26C2C67C2287CCA400A2B2C7 /* back@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "back@2x.png"; sourceTree = "<group>"; };
+		26C2C6812287CFEB00A2B2C7 /* addressedit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = addressedit.png; sourceTree = "<group>"; };
+		26C2C6822287CFEB00A2B2C7 /* addressedit@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "addressedit@2x.png"; sourceTree = "<group>"; };
 		33C183A141837BA9200B4782 /* Pods-CommutingCardDemo-swift.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CommutingCardDemo-swift.release.xcconfig"; path = "Pods/Target Support Files/Pods-CommutingCardDemo-swift/Pods-CommutingCardDemo-swift.release.xcconfig"; sourceTree = "<group>"; };
 		3E9990178ECD374DDBCBAF5F /* libPods-CommutingCardDemo-swift.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CommutingCardDemo-swift.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C325D41E3A58E752BB81D0EC /* Pods-CommutingCardDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CommutingCardDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CommutingCardDemo/Pods-CommutingCardDemo.debug.xcconfig"; sourceTree = "<group>"; };
@@ -1346,6 +1362,8 @@
 				266392D92285296600D1AE21 /* AppDelegate.m */,
 				266392DB2285296600D1AE21 /* ViewController.h */,
 				266392DC2285296600D1AE21 /* ViewController.m */,
+				26C2C6782287C56600A2B2C7 /* SettingViewController.h */,
+				26C2C6792287C56600A2B2C7 /* SettingViewController.m */,
 				26639CCE22856F8100D1AE21 /* CommonDefine.h */,
 				266397E622856D3500D1AE21 /* MANaviRoute.h */,
 				266397E522856D3500D1AE21 /* MANaviRoute.m */,
@@ -1395,6 +1413,10 @@
 				2663980B22856ED000D1AE21 /* Images */,
 				266399A222856ED100D1AE21 /* icon-72.png */,
 				266399A322856ED100D1AE21 /* icon-72@2x.png */,
+				26C2C67B2287CCA300A2B2C7 /* back.png */,
+				26C2C6812287CFEB00A2B2C7 /* addressedit.png */,
+				26C2C6822287CFEB00A2B2C7 /* addressedit@2x.png */,
+				26C2C67C2287CCA400A2B2C7 /* back@2x.png */,
 				266399A422856ED100D1AE21 /* icon@2x.png */,
 				266399A522856ED100D1AE21 /* marker_blue@2x.png */,
 			);
@@ -2095,6 +2117,7 @@
 				26639BB022856ED200D1AE21 /* 13_6746_3093.png in Resources */,
 				26639C4622856ED200D1AE21 /* 13_6740_3096.png in Resources */,
 				26639A4622856ED100D1AE21 /* 12_3373_1551.png in Resources */,
+				26C2C67F2287CCA400A2B2C7 /* back@2x.png in Resources */,
 				26639A6022856ED100D1AE21 /* 12_3368_1553.png in Resources */,
 				26639CCC22856ED200D1AE21 /* marker_blue@2x.png in Resources */,
 				26639B0222856ED200D1AE21 /* 13_6736_3098.png in Resources */,
@@ -2140,6 +2163,7 @@
 				26639CC822856ED200D1AE21 /* icon-72@2x.png in Resources */,
 				26639C6A22856ED200D1AE21 /* 13_6738_3104.png in Resources */,
 				26639A5822856ED100D1AE21 /* 12_3373_1552.png in Resources */,
+				26C2C6852287CFEC00A2B2C7 /* addressedit@2x.png in Resources */,
 				26639CCA22856ED200D1AE21 /* icon@2x.png in Resources */,
 				266399AE22856ED100D1AE21 /* arrow_right.png in Resources */,
 				26639C9A22856ED200D1AE21 /* transforstop.png in Resources */,
@@ -2173,6 +2197,7 @@
 				266392E22285296700D1AE21 /* Assets.xcassets in Resources */,
 				26639A8A22856ED100D1AE21 /* 12_3374_1546.png in Resources */,
 				26639A7E22856ED100D1AE21 /* 12_3374_1551.png in Resources */,
+				26C2C6832287CFEC00A2B2C7 /* addressedit.png in Resources */,
 				26639BEA22856ED200D1AE21 /* 13_6748_3103.png in Resources */,
 				26639AA422856ED100D1AE21 /* 13_6745_3096.png in Resources */,
 				26639B6222856ED200D1AE21 /* 13_6746_3103.png in Resources */,
@@ -2272,6 +2297,7 @@
 				26639B6A22856ED200D1AE21 /* 13_6748_3097.png in Resources */,
 				26639C1622856ED200D1AE21 /* 13_6736_3095.png in Resources */,
 				26639A4822856ED100D1AE21 /* 12_3372_1551.png in Resources */,
+				26C2C67D2287CCA400A2B2C7 /* back.png in Resources */,
 				26639B3E22856ED200D1AE21 /* 13_6747_3099.png in Resources */,
 				26639AE022856ED100D1AE21 /* 13_6737_3104.png in Resources */,
 				26639B8622856ED200D1AE21 /* 13_6750_3099.png in Resources */,
@@ -2509,6 +2535,7 @@
 				26639BB122856ED200D1AE21 /* 13_6746_3093.png in Resources */,
 				26639C4722856ED200D1AE21 /* 13_6740_3096.png in Resources */,
 				26639A4722856ED100D1AE21 /* 12_3373_1551.png in Resources */,
+				26C2C6802287CCA400A2B2C7 /* back@2x.png in Resources */,
 				26639A6122856ED100D1AE21 /* 12_3368_1553.png in Resources */,
 				26639CCD22856ED200D1AE21 /* marker_blue@2x.png in Resources */,
 				26639B0322856ED200D1AE21 /* 13_6736_3098.png in Resources */,
@@ -2554,6 +2581,7 @@
 				26639CC922856ED200D1AE21 /* icon-72@2x.png in Resources */,
 				26639C6B22856ED200D1AE21 /* 13_6738_3104.png in Resources */,
 				26639A5922856ED100D1AE21 /* 12_3373_1552.png in Resources */,
+				26C2C6862287CFEC00A2B2C7 /* addressedit@2x.png in Resources */,
 				26639CCB22856ED200D1AE21 /* icon@2x.png in Resources */,
 				266399AF22856ED100D1AE21 /* arrow_right.png in Resources */,
 				26639C9B22856ED200D1AE21 /* transforstop.png in Resources */,
@@ -2587,6 +2615,7 @@
 				266392FC2285298100D1AE21 /* Assets.xcassets in Resources */,
 				26639A8B22856ED100D1AE21 /* 12_3374_1546.png in Resources */,
 				26639A7F22856ED100D1AE21 /* 12_3374_1551.png in Resources */,
+				26C2C6842287CFEC00A2B2C7 /* addressedit.png in Resources */,
 				26639BEB22856ED200D1AE21 /* 13_6748_3103.png in Resources */,
 				26639AA522856ED100D1AE21 /* 13_6745_3096.png in Resources */,
 				26639B6322856ED200D1AE21 /* 13_6746_3103.png in Resources */,
@@ -2686,6 +2715,7 @@
 				26639B6B22856ED200D1AE21 /* 13_6748_3097.png in Resources */,
 				26639C1722856ED200D1AE21 /* 13_6736_3095.png in Resources */,
 				26639A4922856ED100D1AE21 /* 12_3372_1551.png in Resources */,
+				26C2C67E2287CCA400A2B2C7 /* back.png in Resources */,
 				26639B3F22856ED200D1AE21 /* 13_6747_3099.png in Resources */,
 				26639AE122856ED100D1AE21 /* 13_6737_3104.png in Resources */,
 				26639B8722856ED200D1AE21 /* 13_6750_3099.png in Resources */,
@@ -2844,6 +2874,7 @@
 			files = (
 				266392DD2285296600D1AE21 /* ViewController.m in Sources */,
 				266392E82285296700D1AE21 /* main.m in Sources */,
+				26C2C67A2287C56600A2B2C7 /* SettingViewController.m in Sources */,
 				266392DA2285296600D1AE21 /* AppDelegate.m in Sources */,
 				266397F722856D8E00D1AE21 /* MANaviPolyline.m in Sources */,
 				266397F522856D8E00D1AE21 /* LineDashPolyline.m in Sources */,
@@ -2872,6 +2903,7 @@
 				266392F52285298100D1AE21 /* AppDelegate.swift in Sources */,
 				266397FC22856DA600D1AE21 /* CommonUtility.m in Sources */,
 				2663980422856E2400D1AE21 /* MABusStopAnnotation.m in Sources */,
+				26C2C6872287EAF700A2B2C7 /* SettingViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

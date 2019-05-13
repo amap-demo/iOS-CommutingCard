@@ -14,6 +14,7 @@
 #import "MABusStopAnnotation.h"
 #import "MAPolyLineSelectAnnotationView.h"
 #import "CommonDefine.h"
+#import "SettingViewController.h"
 
 #define kLocationName @"您的位置"
 #define kFirstBusStart @"kFirstBusStart"
@@ -24,10 +25,13 @@ static const NSInteger RoutePlanningPaddingEdge                    = 20;
 static const NSString *RoutePlanningViewControllerStartTitle       = @"起点";
 static const NSString *RoutePlanningViewControllerDestinationTitle = @"终点";
 
-@interface ViewController ()<MAMapViewDelegate, AMapSearchDelegate>{
+@interface ViewController ()<MAMapViewDelegate, AMapSearchDelegate,SettingViewControllerDelegate>{
     CommutingCardType _type;
     UILabel *_titleLab;
     UIButton *_startBtn;
+    UILabel *_timeLab;
+    UILabel *_starLab;
+    UILabel *_endLab;
     NSMutableArray *_busNams;
     NSMutableArray *_busViaStopsAno;
     NSMutableArray *_selectPolyLineAno;
@@ -84,11 +88,18 @@ static const NSString *RoutePlanningViewControllerDestinationTitle = @"终点";
     self.search.delegate = self;
     
     [self initControls];
+    [self initStartAndEnd];
+
     if (_type == CommutingCardTypeBus) {
         [self searchRoutePlanningBus];
     }else if (_type == CommutingCardTypeDrive){
         [self searchRoutePlanningDrive];
     }
+}
+
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    self.navigationController.navigationBar.hidden = YES;
 }
 
 - (void)addDefaultAnnotations
@@ -97,7 +108,6 @@ static const NSString *RoutePlanningViewControllerDestinationTitle = @"终点";
     startAnnotation.coordinate = self.startCoordinate;
     startAnnotation.title      = (NSString*)RoutePlanningViewControllerStartTitle;
     startAnnotation.subtitle   = [NSString stringWithFormat:@"{%f, %f}", self.startCoordinate.latitude, self.startCoordinate.longitude];
-    
     MAPointAnnotation *destinationAnnotation = [[MAPointAnnotation alloc] init];
     destinationAnnotation.coordinate = self.destinationCoordinate;
     destinationAnnotation.title      = (NSString*)RoutePlanningViewControllerDestinationTitle;
@@ -140,12 +150,56 @@ static const NSString *RoutePlanningViewControllerDestinationTitle = @"终点";
     btn1.backgroundColor = [[UIColor redColor] colorWithAlphaComponent:1];
     btn1.layer.cornerRadius = 5;
     btn1.layer.masksToBounds = YES;
-    btn1.frame = CGRectMake(self.view.bounds.size.width - 80, self.view.bounds.size.height - 200, 60, 40);
+    btn1.frame = CGRectMake(10, 20, 60, 40);
     [btn1 setTitle:@"切为驾车" forState:UIControlStateNormal];
     [btn1 setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     btn1.titleLabel.font = [UIFont boldSystemFontOfSize:13];
     [btn1 addTarget:self action:@selector(setting:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:btn1];
+}
+
+- (void)initStartAndEnd{
+    UIView *base = [[UIView alloc]initWithFrame:CGRectMake(75, 20, self.view.bounds.size.width - 70 - 50, 60)];
+    base.backgroundColor = [UIColor whiteColor];
+    [self.view addSubview:base];
+    _starLab = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 190, 30)];
+    _starLab.text = [NSString stringWithFormat:@"起点:%f,%f",self.startCoordinate.longitude,self.startCoordinate.latitude];
+    _starLab.textColor = [UIColor blackColor];
+    _starLab.font = [UIFont systemFontOfSize:14];
+    [base addSubview:_starLab];
+    UIButton *startBtn = [[UIButton alloc]initWithFrame:CGRectMake(_starLab.bounds.origin.x + _starLab.bounds.size.width, 0, 60, 25)];
+    startBtn.backgroundColor = [UIColor redColor];
+    [startBtn setTitle:@"重选起点" forState:UIControlStateNormal];
+    [startBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    startBtn.titleLabel.font = [UIFont systemFontOfSize:12];
+    [startBtn addTarget:self action:@selector(startBtn:) forControlEvents:UIControlEventTouchUpInside];
+    [base addSubview:startBtn];
+
+    _endLab = [[UILabel alloc]initWithFrame:CGRectMake(0, 30, 190, 30)];
+    _endLab.text = [NSString stringWithFormat:@"终点:%f,%f",self.destinationCoordinate.longitude,self.destinationCoordinate.latitude];
+    _endLab.textColor = [UIColor blackColor];
+    _endLab.font = [UIFont systemFontOfSize:14];
+    [base addSubview:_endLab];
+    UIButton *endBtn = [[UIButton alloc]initWithFrame:CGRectMake(_endLab.bounds.origin.x + _endLab.bounds.size.width, 30, 60, 25)];
+    endBtn.backgroundColor = [UIColor redColor];
+    [endBtn setTitle:@"重选终点" forState:UIControlStateNormal];
+    [endBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    endBtn.titleLabel.font = [UIFont systemFontOfSize:12];
+    [endBtn addTarget:self action:@selector(endBtn:) forControlEvents:UIControlEventTouchUpInside];
+    [base addSubview:endBtn];
+}
+
+- (void)startBtn:(UIButton *)sender{
+    SettingViewController *startVC = [SettingViewController new];
+    startVC.delegate = self;
+    startVC.type = 0;
+    [self.navigationController pushViewController:startVC animated:YES];
+}
+- (void)endBtn:(UIButton *)sender{
+    SettingViewController *endVC = [SettingViewController new];
+    endVC.delegate = self;
+    endVC.type = 1;
+    [self.navigationController pushViewController:endVC animated:YES];
 }
 
 - (void)setting:(UIButton *)sender{
@@ -158,6 +212,7 @@ static const NSString *RoutePlanningViewControllerDestinationTitle = @"终点";
         [sender setTitle:@"切为公交" forState:UIControlStateNormal];
         [self searchRoutePlanningDrive];
     }
+    
 }
 
 /* 展示当前路线方案. */
@@ -174,7 +229,7 @@ static const NSString *RoutePlanningViewControllerDestinationTitle = @"终点";
     }else if (_type == CommutingCardTypeDrive){
         [self.optionalPolyLines removeAllObjects];
         MANaviAnnotationType type = MANaviAnnotationTypeDrive;
-        
+        [self.driveNaviRoutes removeAllObjects];
         for (AMapPath *path in self.route.paths) {
             MANaviRoute*navi = [MANaviRoute naviRouteForPath:path withNaviType:type showTraffic:YES startPoint:[AMapGeoPoint locationWithLatitude:self.startCoordinate.latitude longitude:self.startCoordinate.longitude] endPoint:[AMapGeoPoint locationWithLatitude:self.destinationCoordinate.latitude longitude:self.destinationCoordinate.longitude]];
             for (id<MAOverlay> poly in navi.routePolylines) {
@@ -221,9 +276,13 @@ static const NSString *RoutePlanningViewControllerDestinationTitle = @"终点";
             i ++;
         }
     }
+    long nowtim = [CommonUtility getNowTimeTimestamp];
+    long forevertime = nowtim + _seconds;
+    NSString *fortime = [CommonUtility getForeverTime:forevertime];
     NSInteger hour = _seconds / 3600;
     NSInteger minite = (_seconds - hour * 3600) / 60;
     _titleLab.text = hour > 0 ? [NSString stringWithFormat:@"全程%ld小时%ld分钟  %@",(long)hour, minite, transline] : [NSString stringWithFormat:@"全程%ld分钟  %@", minite, transline];
+    _timeLab.text = [NSString stringWithFormat:@"预计%@到达",fortime];
 }
 
 - (void)addBusDepartureStopAnnotation:(NSArray<AMapBusLine*>*)buslines{
@@ -261,11 +320,11 @@ static const NSString *RoutePlanningViewControllerDestinationTitle = @"终点";
 
 - (UIView *)bottomView{
     if (_bottomView == nil) {
-        _bottomView = [[UIView alloc]initWithFrame:CGRectMake(10, self.view.bounds.size.height - 40, self.view.bounds.size.width - 20, 40)];
+        _bottomView = [[UIView alloc]initWithFrame:CGRectMake(10, self.view.bounds.size.height - 60, self.view.bounds.size.width - 20, 60)];
         _bottomView.backgroundColor = [UIColor whiteColor];
         _bottomView.layer.cornerRadius = 5;
         _bottomView.layer.masksToBounds = YES;
-        UILabel *title = [[UILabel alloc]initWithFrame:CGRectMake(20, 0, _bottomView.bounds.size.width - 20, 40)];
+        UILabel *title = [[UILabel alloc]initWithFrame:CGRectMake(20, 0, _bottomView.bounds.size.width - 20, 30)];
         title.textColor = [UIColor blackColor];
         title.font = [UIFont systemFontOfSize:13];
         title.textAlignment = NSTextAlignmentLeft;
@@ -278,6 +337,12 @@ static const NSString *RoutePlanningViewControllerDestinationTitle = @"终点";
         [_startBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [_bottomView addSubview:_startBtn];
         [_startBtn addTarget:self action:@selector(goStart) forControlEvents:UIControlEventTouchUpInside];
+        
+        _timeLab = [[UILabel alloc]initWithFrame:CGRectMake(20, 30, _bottomView.bounds.size.width - 20, 30)];
+        _timeLab.textColor = [UIColor blackColor];
+        _timeLab.font = [UIFont systemFontOfSize:13];
+        _timeLab.textAlignment = NSTextAlignmentLeft;
+        [_bottomView addSubview:_timeLab];
     }
     
     if (_type == CommutingCardTypeDrive){
@@ -558,6 +623,21 @@ static const NSString *RoutePlanningViewControllerDestinationTitle = @"终点";
             _seconds =  (self.route.paths[self.selectedIndex]).duration;
         }
         [self addBottomView];
+    }
+}
+
+- (void)updateLocation:(AMapTip *)tip type:(NSInteger)ktype{
+    if (ktype == 0) {
+        self.startCoordinate        = CLLocationCoordinate2DMake(tip.location.latitude, tip.location.longitude);
+        _starLab.text = [NSString stringWithFormat:@"起点:%f,%f",self.startCoordinate.longitude,self.startCoordinate.latitude];
+    }else{
+        self.destinationCoordinate        = CLLocationCoordinate2DMake(tip.location.latitude, tip.location.longitude);
+        _endLab.text = [NSString stringWithFormat:@"终点:%f,%f",self.destinationCoordinate.longitude,self.destinationCoordinate.latitude];
+    }
+    if (_type == CommutingCardTypeBus) {
+        [self searchRoutePlanningBus];
+    }else if (_type == CommutingCardTypeDrive){
+        [self searchRoutePlanningDrive];
     }
 }
 

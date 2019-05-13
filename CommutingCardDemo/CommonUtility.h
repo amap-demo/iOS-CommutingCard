@@ -41,5 +41,8 @@
                            pointCount:(NSInteger)pointCount
                             lineWidth:(CGFloat)lineWidth;
 + (CLLocationCoordinate2D)fetchPointPolylinePoints:(NSArray<MAPolyline *> *)polys mapView:(MAMapView*)mapView index:(NSInteger)index selected:(NSInteger)slect;
-    
+
++ (long )getNowTimeTimestamp;
++ (NSString *)getForeverTime:(long)timeInter;
+
 @end

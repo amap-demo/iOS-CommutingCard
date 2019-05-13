@@ -344,6 +344,19 @@
     return retVal;
 }
     
-    
+
++ (long )getNowTimeTimestamp{
+    NSDate *datenow = [NSDate date];
+    return [datenow timeIntervalSince1970];
+}
+
++ (NSString *)getForeverTime:(long)timeInter{
+    NSDateFormatter *_dateFormatter = [[NSDateFormatter alloc] init];
+    [_dateFormatter setDateFormat:@"hh:mm"];
+    NSDate *stampDate = [NSDate dateWithTimeIntervalSince1970:timeInter];
+    NSString* dateString = [_dateFormatter stringFromDate:stampDate];
+    return dateString;
+}
+
     
 @end
